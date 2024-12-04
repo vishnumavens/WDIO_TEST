@@ -1,0 +1,77 @@
+import globals from 'globals';
+import eslintPluginJs from '@eslint/js';
+import jasmine from 'eslint-plugin-jasmine';
+
+export default [
+	{
+		files: ['**/*.js'],
+		languageOptions: {
+			globals: {
+				...globals.browser,
+				MY_CUSTOM_GLOBAL: 'readonly',
+				it: 'readonly',
+				describe: 'readonly',
+				beforeAll: 'readonly',
+				afterAll: 'readonly',
+				beforeEach: 'readonly',
+				afterEach: 'readonly',
+				browser: 'readonly',
+				expect: 'readonly',
+				$: 'readonly',
+				$$: 'readonly',
+			},
+		},
+		plugins: {
+			jasmine,
+		},
+		rules: {
+			// General JavaScript rules
+			'no-var': 'error',
+			'prefer-const': 'error',
+			'quotes': ['error', 'single', { avoidEscape: true }],
+			'array-bracket-spacing': ['error', 'never'],
+			'object-curly-spacing': ['error', 'always'],
+			'object-shorthand': ['error', 'always'],
+			'func-style': ['error', 'expression'],
+			'prefer-arrow-callback': 'error',
+			'arrow-spacing': ['error', { before: true, after: true }],
+			'no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }],
+			'no-use-before-define': ['error', { functions: false, classes: true }],
+			'eqeqeq': ['error', 'always'],
+			'curly': ['error', 'all'],
+			'no-lonely-if': 'error',
+			'no-unneeded-ternary': 'error',
+			'indent': ['error', 'tab', { SwitchCase: 1 }],
+			'linebreak-style': ['error', 'windows'],
+			'semi': ['error', 'always'],
+			'comma-dangle': ['error', 'always-multiline'],
+			'no-new-wrappers': 'error',
+			'camelcase': ['error', { properties: 'never' }],
+			'no-console': 'warn',
+			'max-len': ['error', { code: 150 }],
+			'object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
+			'no-multiple-empty-lines': ['error', { max: 1 }],
+			'no-trailing-spaces': 'error',
+
+			// Jasmine rules
+			'jasmine/expect-matcher': 1,
+			'jasmine/expect-single-argument': 1,
+			'jasmine/missing-expect': 0,
+			'jasmine/named-spy': 0,
+			'jasmine/no-assign-spyon': 0,
+			'jasmine/no-describe-variables': 0,
+			'jasmine/no-disabled-tests': 1,
+			'jasmine/no-expect-in-setup-teardown': 1,
+			'jasmine/no-focused-tests': 2,
+			'jasmine/no-global-setup': 2,
+			'jasmine/no-promise-without-done-fail': 1,
+			'jasmine/no-suite-callback-args': 2,
+			'jasmine/no-unsafe-spy': 1,
+			'jasmine/prefer-jasmine-matcher': 1,
+			'jasmine/prefer-promise-strategies': 1,
+			'jasmine/prefer-toHaveBeenCalledWith': 1,
+			'jasmine/prefer-toBeUndefined': 0,
+		},
+	},
+	eslintPluginJs.configs.recommended,
+];
